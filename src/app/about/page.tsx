@@ -12,7 +12,7 @@ import {
   Schema,
   Row,
 } from "@once-ui-system/core";
-import { baseURL, about, person, social } from "@/resources";
+import { baseURL, about, person, social, studioCapabilities, studioPrinciples } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
@@ -35,19 +35,19 @@ export default function About() {
       items: [],
     },
     {
-      title: about.work.title,
-      display: about.work.display,
-      items: about.work.experiences.map((experience) => experience.company),
-    },
-    {
-      title: about.studies.title,
-      display: about.studies.display,
-      items: about.studies.institutions.map((institution) => institution.name),
+      title: "What We Do",
+      display: true,
+      items: [],
     },
     {
       title: about.technical.title,
       display: about.technical.display,
       items: about.technical.skills.map((skill) => skill.title),
+    },
+    {
+      title: "How We Work",
+      display: true,
+      items: [],
     },
   ];
   return (
@@ -93,7 +93,17 @@ export default function About() {
             flex={3}
             horizontal="center"
           >
-            <Avatar src={person.avatar} size="xl" />
+            <Row minWidth="160" horizontal="center" vertical="center" paddingBottom="s">
+              <img
+                src={person.avatar}
+                alt="Devthon Labs Logo"
+                style={{
+                  width: "128px",
+                  height: "128px",
+                  objectFit: "contain",
+                }}
+              />
+            </Row>
             <Row gap="8" vertical="center">
               <Icon onBackground="accent-weak" name="globe" />
               {person.location}
@@ -197,89 +207,35 @@ export default function About() {
           </Column>
 
           {about.intro.display && (
-            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl">
-              {about.intro.description}
+            <Column fillWidth gap="m" marginBottom="xl">
+              <Text variant="body-default-l" onBackground="neutral-weak">
+                {about.intro.description}
+              </Text>
             </Column>
           )}
 
-          {about.work.display && (
-            <>
-              <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
-                {about.work.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-                {about.work.experiences.map((experience, index) => (
-                  <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
-                    <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
-                      <Text id={experience.company} variant="heading-strong-l">
-                        {experience.company}
-                      </Text>
-                      <Text variant="heading-default-xs" onBackground="neutral-weak">
-                        {experience.timeframe}
-                      </Text>
-                    </Row>
-                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
-                      {experience.role}
-                    </Text>
-                    <Column as="ul" gap="16">
-                      {experience.achievements.map(
-                        (achievement: React.ReactNode, index: number) => (
-                          <Text
-                            as="li"
-                            variant="body-default-m"
-                            key={`${experience.company}-${index}`}
-                          >
-                            {achievement}
-                          </Text>
-                        ),
-                      )}
-                    </Column>
-                    {experience.images && experience.images.length > 0 && (
-                      <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
-                        {experience.images.map((image, index) => (
-                          <Row
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            minWidth={image.width}
-                            height={image.height}
-                          >
-                            <Media
-                              enlarge
-                              radius="m"
-                              sizes={image.width.toString()}
-                              alt={image.alt}
-                              src={image.src}
-                            />
-                          </Row>
-                        ))}
-                      </Row>
-                    )}
-                  </Column>
-                ))}
+          {/* Section: What We Do */}
+          <Heading as="h2" id="What We Do" variant="display-strong-s" marginBottom="m">
+            What We Do
+          </Heading>
+          <Row fillWidth gap="l" marginBottom="xl" s={{ direction: "column" }}>
+            {studioCapabilities.map((capability, index) => (
+              <Column
+                key={index}
+                flex={1}
+                padding="l"
+                radius="l"
+                border="neutral-alpha-medium"
+                background="neutral-alpha-weak"
+                gap="m"
+              >
+                <Heading variant="heading-strong-m">{capability.title}</Heading>
+                <Text variant="body-default-s" onBackground="neutral-weak">
+                  {capability.description}
+                </Text>
               </Column>
-            </>
-          )}
-
-          {about.studies.display && (
-            <>
-              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
-                {about.studies.title}
-              </Heading>
-              <Column fillWidth gap="l" marginBottom="40">
-                {about.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
-                      {institution.description}
-                    </Text>
-                  </Column>
-                ))}
-              </Column>
-            </>
-          )}
+            ))}
+          </Row>
 
           {about.technical.display && (
             <>
@@ -291,7 +247,7 @@ export default function About() {
               >
                 {about.technical.title}
               </Heading>
-              <Column fillWidth gap="l">
+              <Column fillWidth gap="l" marginBottom="xl">
                 {about.technical.skills.map((skill, index) => (
                   <Column key={`${skill}-${index}`} fillWidth gap="4">
                     <Text id={skill.title} variant="heading-strong-l">
@@ -335,6 +291,37 @@ export default function About() {
               </Column>
             </>
           )}
+
+          {/* Section: How We Work */}
+          <Heading as="h2" id="How We Work" variant="display-strong-s" marginBottom="m">
+            How We Work
+          </Heading>
+          <Column fillWidth gap="m" marginBottom="l">
+            <Row gap="l" s={{ direction: "column" }}>
+              {studioPrinciples.slice(0, 2).map((principle, index) => (
+                <Column key={index} flex={1} padding="m" gap="s">
+                  <Heading variant="heading-strong-s" onBackground="brand-strong">
+                    {principle.title}
+                  </Heading>
+                  <Text variant="body-default-s" onBackground="neutral-weak">
+                    {principle.description}
+                  </Text>
+                </Column>
+              ))}
+            </Row>
+            <Row gap="l" s={{ direction: "column" }}>
+              {studioPrinciples.slice(2, 4).map((principle, index) => (
+                <Column key={index} flex={1} padding="m" gap="s">
+                  <Heading variant="heading-strong-s" onBackground="brand-strong">
+                    {principle.title}
+                  </Heading>
+                  <Text variant="body-default-s" onBackground="neutral-weak">
+                    {principle.description}
+                  </Text>
+                </Column>
+              ))}
+            </Row>
+          </Column>
         </Column>
       </Row>
     </Column>

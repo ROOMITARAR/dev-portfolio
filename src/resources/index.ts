@@ -8,6 +8,10 @@ export {
   blog,
   work,
   gallery,
+  studioStats,
+  studioCapabilities,
+  studioPrinciples,
+  founderNote,
 } from "./content";
 
 export {

@@ -1,0 +1,31 @@
+---
+title: "From Bubble.io Plugins to Production APIs: What Building for Real Clients Taught Me"
+publishedAt: "2026-07-01"
+summary: "Why the hardest part of software engineering isn't writing code—it's diagnosing the actual problem. Lessons from building full-stack apps and plugin architectures."
+tag: "Engineering"
+---
+
+When I first started building web applications, I thought my job was to write code. I focused entirely on learning syntax, mastering frameworks like React and Angular, and database queries. I thought that if a client gave me a feature description, my only task was to translate that description into running code.
+
+After working as a web application developer at Hashlogics and Consolices, my perspective changed completely. I realized that writing code is the easy part. The hardest, and most important, part of software development is diagnosing the actual problem.
+
+### The XY Problem in Software Development
+
+In software, there is a concept called the \"XY Problem.\" This happens when a client wants to solve problem X, and they assume that solution Y is the best way to do it. So, they reach out to a developer and ask them to build Y. 
+
+If the developer just writes the code without asking questions, they build Y—only to find out later that it didn't solve X, or made things worse.
+
+During my time at Hashlogics, I built custom plugins and API integrations for Bubble.io. Clients would often come to us asking for complex, customized database listeners or heavy cron jobs. They assumed they needed to store massive amounts of external data locally to run their reports. 
+
+Instead of just building what they asked for, I sat down to understand what they were trying to accomplish. Often, we could avoid the custom listeners entirely by utilizing lightweight API calls that fetched data on demand. We saved them weeks of development time and avoided database bloating.
+
+### Focus on Diagnosis, Not Syntax
+
+At Consolices, I built and maintained client web applications and integrated third-party APIs. The primary lesson I carried over was that scalability and performance start in the diagnostic phase. If you jump straight into the editor, you end up writing code that you have to refactor or delete later.
+
+Before writing a single line of Node.js or React code, I now ask:
+- What is the business goal of this feature?
+- Who is the end user, and what is the simplest path to solve their pain point?
+- Is there a way to solve this using existing, robust APIs instead of building from scratch?
+
+This engineering habit is what drives Devthon Labs. When clients work with me, they aren't just hiring a programmer to type out syntax. They are hiring a developer who will look at their business flow, analyze their actual problems, and engineer the simplest, most scalable solution possible. Coding is just the tool we use to implement the diagnostic result.

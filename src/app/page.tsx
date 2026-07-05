@@ -12,7 +12,7 @@ import {
   Line,
 } from "@once-ui-system/core";
 import { home, about, person, baseURL, routes } from "@/resources";
-import { Mailchimp } from "@/components";
+import { Mailchimp, Services, Reviews } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { Posts } from "@/components/blog/Posts";
 
@@ -87,11 +87,16 @@ export default function Home() {
             >
               <Row gap="8" vertical="center" paddingRight="4">
                 {about.avatar.display && (
-                  <Avatar
-                    marginRight="8"
-                    style={{ marginLeft: "-0.75rem" }}
+                  <img
                     src={person.avatar}
-                    size="m"
+                    alt="Devthon Labs Logo"
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      objectFit: "contain",
+                      marginRight: "8px",
+                      marginLeft: "-0.25rem",
+                    }}
                   />
                 )}
                 {about.title}
@@ -123,7 +128,9 @@ export default function Home() {
           </Row>
         </Column>
       )}
+      <Services />
       <Projects range={[2]} />
+      <Reviews />
       <Mailchimp />
     </Column>
   );

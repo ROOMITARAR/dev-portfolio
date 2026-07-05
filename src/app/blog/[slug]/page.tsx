@@ -113,8 +113,17 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
             )}
           </Column>
           <Row marginBottom="32" horizontal="center">
-            <Row gap="16" vertical="center">
-              <Avatar size="s" src={person.avatar} />
+            <Row gap="8" vertical="center">
+              <img
+                src={person.avatar}
+                alt={person.name}
+                style={{
+                  width: "24px",
+                  height: "24px",
+                  objectFit: "contain",
+                  marginRight: "4px",
+                }}
+              />
               <Text variant="label-default-m" onBackground="brand-weak">
                 {person.name}
               </Text>
