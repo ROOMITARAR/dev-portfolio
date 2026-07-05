@@ -34,10 +34,9 @@ import {
   SiNodedotjs,
   SiExpress,
   SiMysql,
-  SiJava,
 } from "react-icons/si";
 
-import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, } from "react-icons/fa6";
+import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, FaJava, } from "react-icons/fa6";
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
@@ -73,7 +72,7 @@ export const iconLibrary: Record<string, IconType> = {
   nodejs: SiNodedotjs,
   express: SiExpress,
   mysql: SiMysql,
-  java: SiJava,
+  java: FaJava,
   facebook: FaFacebook,
   pinterest: FaPinterest,
   whatsapp: FaWhatsapp,
