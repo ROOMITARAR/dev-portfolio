@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
 
@@ -91,7 +91,7 @@ export const Header = () => {
               )}
               <Line background="neutral-alpha-medium" vert maxHeight="24" />
               {routes["/about"] && (
-                <>
+                <React.Fragment key="about">
                   <Row s={{ hide: true }}>
                     <ToggleButton
                       prefixIcon="person"
@@ -107,10 +107,10 @@ export const Header = () => {
                       selected={pathname === "/about"}
                     />
                   </Row>
-                </>
+                </React.Fragment>
               )}
               {routes["/work"] && (
-                <>
+                <React.Fragment key="work">
                   <Row s={{ hide: true }}>
                     <ToggleButton
                       prefixIcon="grid"
@@ -126,10 +126,10 @@ export const Header = () => {
                       selected={pathname.startsWith("/work")}
                     />
                   </Row>
-                </>
+                </React.Fragment>
               )}
               {routes["/blog"] && (
-                <>
+                <React.Fragment key="blog">
                   <Row s={{ hide: true }}>
                     <ToggleButton
                       prefixIcon="book"
@@ -145,10 +145,10 @@ export const Header = () => {
                       selected={pathname.startsWith("/blog")}
                     />
                   </Row>
-                </>
+                </React.Fragment>
               )}
               {routes["/gallery"] && (
-                <>
+                <React.Fragment key="gallery">
                   <Row s={{ hide: true }}>
                     <ToggleButton
                       prefixIcon="gallery"
@@ -164,13 +164,13 @@ export const Header = () => {
                       selected={pathname.startsWith("/gallery")}
                     />
                   </Row>
-                </>
+                </React.Fragment>
               )}
               {display.themeSwitcher && (
-                <>
+                <React.Fragment key="theme">
                   <Line background="neutral-alpha-medium" vert maxHeight="24" />
                   <ThemeToggle />
-                </>
+                </React.Fragment>
               )}
             </Row>
           </Row>
